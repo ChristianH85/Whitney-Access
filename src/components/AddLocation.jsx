@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { TextInput } from "react-materialize";
-import { Range, Button, Icon } from "react-materialize";
+import { Range, Button } from "react-materialize";
 
-const trigger = <Icon>playlist_add</Icon>;
+// const trigger = <Icon>playlist_add</Icon>;
 class AddLoc extends Component {
   handleChange = e => {
-    console.log(this.props);
+    // console.log(this.props);
     let name = e.target.name;
     let val = e.target.value;
     this.props.onChange(name, val);
@@ -13,14 +13,17 @@ class AddLoc extends Component {
     // let value = e.tatget.val;
     console.log(name);
   };
-  handleSubmit() {
-    console.log("rating");
-  }
+  handleSubmit = () => {
+    // console.log(this.props.passSubmit);
+    // console.log("rating");
+    this.props.passSubmit();
+  };
   render() {
     return (
       <div>
         <form>
           <TextInput
+            required
             id="input"
             label="Location Name"
             name="location"
@@ -28,6 +31,7 @@ class AddLoc extends Component {
             value={this.props.location}
           ></TextInput>
           <TextInput
+            required
             id="input"
             label="Address"
             name="address"
@@ -35,14 +39,16 @@ class AddLoc extends Component {
             value={this.props.address}
           ></TextInput>
           <TextInput
+            required
             id="input"
             label="Comments"
-            name="Comments"
+            name="comments"
             onChange={this.handleChange}
             value={this.props.comments}
           ></TextInput>
           <label id="ratingLabel">Accesibility Rating 1-5</label>
           <Range
+            required
             min="0"
             max="5"
             name="rating"
@@ -50,30 +56,9 @@ class AddLoc extends Component {
             onChange={this.handleChange}
             value={this.props.rating}
           />
-          <Button onClick={this.handleSubmit}>Add Location</Button>
-          {/* <Form.Label>User</Form.Label>
-          <Form.Group>
-            <Form.Label>Location Name:</Form.Label>
-            <Form.Control
-              type="name"
-              placeholder="Enter Location Name"
-            ></Form.Control>
-          </Form.Group> */}
-
-          {/* <Form.Group>
-            <Form.Label>Address:</Form.Label>
-            <Form.Control
-              type="address"
-              placeholder="Enter Location Address"
-            ></Form.Control>
-          </Form.Group> */}
-          {/* <Form.Group>
-            <Form.Label>Comments:</Form.Label>
-            <Form.Control
-              type="text"
-              placeholder="Add comments about accessibility here"
-            ></Form.Control>
-          </Form.Group> */}
+          <Button type="button" onClick={this.handleSubmit}>
+            Add Location
+          </Button>
         </form>
       </div>
     );

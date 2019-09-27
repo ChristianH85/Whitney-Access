@@ -15,16 +15,19 @@ const trigger = (
 
 class Nav extends Component {
   handlePass = (name, val) => {
-    console.log(this.props);
-    console.log(name, val, [name]);
+    // console.log(this.props);
+    // console.log(name, val, [name]);
     this.props.onChange(name, val);
   };
   submitNewLocation = () => {
-    let newLocation = {
-      Address: this.props.address,
-      Comments: this.props.comments,
-      Rating: this.props.rating
-    };
+    // console.log("new");
+    this.props.catchPass();
+    // this.props.onSubmit();
+    // let newLocation = {
+    //   Address: this.props.address,
+    //   Comments: this.props.comments,
+    //   Rating: this.props.rating
+    // };
   };
   render() {
     return (
@@ -37,7 +40,11 @@ class Nav extends Component {
             options={("right", { closeOnClick: true })}
           >
             <header id="slogan">Help Us Help You!</header>
-            <AddLoc onChange={this.handlePass} {...this.props} />
+            <AddLoc
+              onChange={this.handlePass}
+              {...this.props}
+              passSubmit={this.submitNewLocation}
+            />
           </SideNav>
         </Navbar>
       </div>

@@ -10,7 +10,8 @@ class App extends Component {
     comments:'',
     mapdata:'',
     tab:'',
-    rating:0
+    rating:0,
+    pending:[]
   }
 
     
@@ -24,14 +25,29 @@ class App extends Component {
         [data]: val
       });
     }
-    
+    SubmitNew=()=>{
+      let plist=this.state.pending
+      let loc=this.state.location
+      let add= this.state.address
+      let comm= this.state.comments
+      let rate= this.state.rating
+      let verifying={
+        pLoc:loc,
+        pAdd:add,
+        pComm:comm,
+        prate:rate
+      }
+      plist.push(verifying)
+      this.setState({pending:plist})
+      console.log("root")
+    }
     
   
   render(){
     return (
       <div className="App">
-        <Nav onChange={this.handleInput} {...this.state}/>
-          <Map/>
+        <Nav onChange={this.handleInput} catchPass={this.SubmitNew}{...this.state}/>
+          <Map {...this.state}/>
          {/* <AddLoc/>
          <LocInfo/>  */}
       </div>
