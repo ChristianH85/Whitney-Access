@@ -25,10 +25,11 @@ class Map extends Component {
       lat: 30.307182,
       lng: -97.755996
     },
-    zoom: 11
+    zoom: 12
   };
 
   componentDidMount() {
+    console.log(process.env.REACT_APP_MAP_KEY);
     let list = [];
     restaurants.map(data => {
       console.log(data.location.lat);
