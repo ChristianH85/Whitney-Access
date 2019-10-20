@@ -2,9 +2,13 @@ import React,{Component} from 'react';
 import './App.css';
 import Nav from './components/Navbar';
 import Map from './components/Map';
+import Login from './components/Login';
+
 
 class App extends Component {
   state= {
+    isLoggedIn: false,
+    user:{},
     location:'',
     address:'',
     comments:'',
@@ -41,13 +45,24 @@ class App extends Component {
       this.setState({pending:plist})
       console.log("root")
     }
-    
+    userLogin=(data,user)=>{
+      if (data===false){
+        
+        this.setState({
+          isLoggedIn: true,
+          user:user
+        })
+      }
+      console.log(this.state)
+     
+    }
   
   render(){
     return (
       <div className="App">
         <Nav onChange={this.handleInput} catchPass={this.SubmitNew}{...this.state}/>
-          <Map {...this.state}/>
+  {this.state.isLoggedIn===true?<Map {...this.state}/>:<Login {...this.state} toggleLogin={this.userLogin}/>}
+          {/* <Map {...this.state}/> */}
          {/* <AddLoc/>
          <LocInfo/>  */}
       </div>
